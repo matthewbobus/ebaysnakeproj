@@ -13,7 +13,7 @@ for file in os.listdir('c://users//matt//desktop//pythonprojects//ebay//csv_to_x
 	df['end'] = pd.to_datetime(df['end'])
 	df['start'] = pd.to_datetime(df['start'])
 	df['hours'] = ((df['end'] - df['start']).dt.total_seconds())/3600
-	twodays = df[df['hours'] < 48]
+	twodays = df[df['hours'] < 360]
 #	sevendays = df[(df['hours'] > 48) & (df['hours'] < 168)]
 	sevendays = df[df['hours'] < 168]
 	two_cat = twodays['cat name'].value_counts().reset_index(name='count')
@@ -76,10 +76,10 @@ for file in os.listdir('c://users//matt//desktop//pythonprojects//ebay//csv_to_x
 	scat_df = dflistapnd(sevdaelist)
 	writer = ExcelWriter('c://users//matt//desktop//pythonprojects//ebay//human_readable_results//' + file[:-4] + '.xlsx') 
 #	'{}.xlsx'.format(datetime.now().strftime('-%m-%d-%y')))
-#	twodays.to_excel(writer, sheet_name='Two Days Sold-Raw Results')
-#	two_cat.to_excel(writer, sheet_name='Two Days-Category Counts')
-#	tcat_df.to_excel(writer, sheet_name='Two Days-Top Category Results')
-#	tdwordctallcats.to_excel(writer, sheet_name='Two Days-Word Counts')
+	twodays.to_excel(writer, sheet_name='15 Days Sold-Raw Results')
+	two_cat.to_excel(writer, sheet_name='15 Days-Category Counts')
+	tcat_df.to_excel(writer, sheet_name='15 Days-Top Category Results')
+	tdwordctallcats.to_excel(writer, sheet_name='15 Days-Word Counts')
 	sevendays.to_excel(writer, sheet_name='Seven Days Sold-Raw Results')
 	sev_cat.to_excel(writer, sheet_name='Seven Days-Category Counts')
 	scat_df.to_excel(writer, sheet_name='Seven Days-Top Category Results')
