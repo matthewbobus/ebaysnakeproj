@@ -7,7 +7,10 @@ from pandas import ExcelWriter
 for file in os.listdir('c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx'):
 	df = pd.read_csv('c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx//' + file, encoding='iso-8859-1')
 	df.drop_duplicates(df.columns.difference(['sellerID']), inplace=True)
-	df.to_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, index=False, encoding='iso-8859-1')
+	if os.path.isfile('c://users//matt//desktop//pythonprojects//ebay//results' + file):
+		df.to_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, mode='a', index=False, header=False, encoding='iso-8859-1')
+	else:
+		df.to_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, index=False, encoding='iso-8859-1')
 	print(file[:-4])
 	df = pd.read_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, encoding='iso-8859-1')
 	df['end'] = pd.to_datetime(df['end'])
