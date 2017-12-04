@@ -2,10 +2,10 @@ import requests, os, pandas as pd
 from bs4 import BeautifulSoup as soup
 from datetime import datetime
 
-with open ("C://Users//Matt//Desktop//PythonProjects//Ebay//category_IDs_new.txt", "r") as catnums:
+with open ("C://Users//Matt//Documents//PythonProjects//Ebay//category_IDs_new.txt", "r") as catnums:
 	Id_text = catnums.readlines()
 
-with open ("C://users//matt//desktop//pythonprojects//ebay//search_words.txt", "r") as martin:
+with open ("C://users//matt//Documents//pythonprojects//ebay//search_words.txt", "r") as martin:
 	ting = martin.readlines()
 	if ting == []:
 		ting.append("")
@@ -41,11 +41,11 @@ print("pages: " + result_count.text)
 print(tasty.find('ack').text)
 input('Everything good?...')
 		###____###
-with open ("C://users//matt//desktop//pythonprojects//ebay//search_words.txt", "r") as martin:
+with open ("C://users//matt//Documents//pythonprojects//ebay//search_words.txt", "r") as martin:
 	ting = martin.readlines()
 	if ting == []:
 		ting.append("")
-	with open ("C://Users//Matt//Desktop//PythonProjects//Ebay//category_IDs_new.txt", "r") as catnums:
+	with open ("C://Users//Matt//Documents//PythonProjects//Ebay//category_IDs_new.txt", "r") as catnums:
 		Id_text = catnums.readlines()
 		for x in range(len(Id_text)):
 			for i in range(len(ting)):
@@ -145,9 +145,9 @@ with open ("C://users//matt//desktop//pythonprojects//ebay//search_words.txt", "
 					end = end.split(',')
 					csv_d = list(zip(titles,item_id,categories,categoryId,prices,sellerID,start,urls,end))[:-1]
 					df = pd.DataFrame(csv_d, columns=['title','ID','cat name','cat id','price','sellerID','start','url','end'])
-					if os.path.isfile("c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx//catID" + querystring['categoryId'] + ting[i].strip().replace('\"','') +".csv"):
-						df.to_csv("c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx//catID" + querystring['categoryId'] + ting[i].strip().replace('\"','') +".csv", mode='a', index=False, header=False)
+					if os.path.isfile("c://users//matt//Documents//pythonprojects//ebay//csv_to_xlsx//catID" + querystring['categoryId'] + ting[i].strip().replace('\"','') +".csv"):
+						df.to_csv("c://users//matt//Documents//pythonprojects//ebay//csv_to_xlsx//catID" + querystring['categoryId'] + ting[i].strip().replace('\"','') +".csv", mode='a', index=False, header=False)
 					else:
-						df.to_csv("c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx//catID" + querystring['categoryId'] + ting[i].strip().replace('\"','') +".csv", index=False)
+						df.to_csv("c://users//matt//Documents//pythonprojects//ebay//csv_to_xlsx//catID" + querystring['categoryId'] + ting[i].strip().replace('\"','') +".csv", index=False)
 
 print("Good Job!")

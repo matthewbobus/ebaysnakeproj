@@ -6,7 +6,7 @@ smoke = requests.get('http://victoryautowreckers.com/newarrivals.aspx').text
 
 crystal = bs(smoke, 'lxml')
 
-with open('c://users//matt//desktop//pythonprojects//ebay//web_list.txt', 'w') as jesus:
+with open('c://users//matt//Documents//pythonprojects//ebay//web_list.txt', 'w') as jesus:
 	gerrymander = ''
 	for i in range(1, len(crystal.table.table.find_all('tr'))):
 		for l in range(2,7):
@@ -39,5 +39,5 @@ with open('c://users//matt//desktop//pythonprojects//ebay//web_list.txt', 'w') a
 	year = new_data.Year.astype(dtype=str).str[2:4]
 	model = new_data.Model.str.lower()
 	to_txt = pd.DataFrame({1:year, 2:model}, index=None)	
-	new_data.to_csv('c://users//matt//desktop//pythonprojects//ebay//web_list.txt', sep=' ', index=False, header=False, mode='w')
-	to_txt.to_csv('c://users//matt//desktop//pythonprojects//ebay//search_words.txt', sep=' ', index=False, header=False, mode='w')
+	new_data.to_csv('c://users//matt//Documents//pythonprojects//ebay//web_list.txt', sep=' ', index=False, header=False, mode='w')
+	to_txt.to_csv('c://users//matt//Documents//pythonprojects//ebay//search_words.txt', sep=' ', index=False, header=False, mode='w')

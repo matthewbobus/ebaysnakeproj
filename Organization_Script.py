@@ -1,5 +1,5 @@
 import pandas as pd
-from pandas import ExcelWriter
+#from pandas import ExcelWriter
 
 df = pd.read_csv('csv_to_xlsx/catID6030.csv', encoding = 'iso-8859-1')
 with open('Model_Names.txt', 'r') as model_list:

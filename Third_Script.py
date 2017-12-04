@@ -4,15 +4,15 @@ from datetime import datetime
 from pandas import ExcelWriter
 
 
-for file in os.listdir('c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx'):
-	df = pd.read_csv('c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx//' + file, encoding='iso-8859-1')
+for file in os.listdir('c://users//matt//documents//pythonprojects//ebay//csv_to_xlsx'):
+	df = pd.read_csv('c://users//matt//documents//pythonprojects//ebay//csv_to_xlsx//' + file, encoding='iso-8859-1')
 	df.drop_duplicates(df.columns.difference(['sellerID']), inplace=True)
-	if os.path.isfile('c://users//matt//desktop//pythonprojects//ebay//results' + file):
-		df.to_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, mode='a', index=False, header=False, encoding='iso-8859-1')
+	if os.path.isfile('c://users//matt//documents//pythonprojects//ebay//results' + file):
+		df.to_csv('c://users//matt//documents//pythonprojects//ebay//results//' + file, mode='a', index=False, header=False, encoding='iso-8859-1')
 	else:
-		df.to_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, index=False, encoding='iso-8859-1')
+		df.to_csv('c://users//matt//documents//pythonprojects//ebay//results//' + file, index=False, encoding='iso-8859-1')
 	print(file[:-4])
-	df = pd.read_csv('c://users//matt//desktop//pythonprojects//ebay//results//' + file, encoding='iso-8859-1')
+	df = pd.read_csv('c://users//matt//documents//pythonprojects//ebay//results//' + file, encoding='iso-8859-1')
 	df['end'] = pd.to_datetime(df['end'])
 	df['start'] = pd.to_datetime(df['start'])
 	df['hours'] = ((df['end'] - df['start']).dt.total_seconds())/3600
@@ -77,7 +77,7 @@ for file in os.listdir('c://users//matt//desktop//pythonprojects//ebay//csv_to_x
 	sdwordctallcats = wizwordry(sevdaelist)
 	tcat_df = dflistapnd(twodaelist)
 	scat_df = dflistapnd(sevdaelist)
-	writer = ExcelWriter('c://users//matt//desktop//pythonprojects//ebay//human_readable_results//' + file[:-4] + '.xlsx', engine='xlsxwriter', options={'strings_to_urls': False}) 
+	writer = ExcelWriter('c://users//matt//documents//pythonprojects//ebay//human_readable_results//' + file[:-4] + '.xlsx', engine='xlsxwriter', options={'strings_to_urls': False}) 
 #	'{}.xlsx'.format(datetime.now().strftime('-%m-%d-%y')))
 	twodays.to_excel(writer, sheet_name='30 Days Sold-Raw Results')
 	two_cat.to_excel(writer, sheet_name='30 Days-Category Counts')
@@ -88,4 +88,4 @@ for file in os.listdir('c://users//matt//desktop//pythonprojects//ebay//csv_to_x
 	scat_df.to_excel(writer, sheet_name='Seven Days-Top Category Results')
 	sdwordctallcats.to_excel(writer, sheet_name='Seven Days-Word Counts')
 	writer.save()
-	os.remove('c://users//matt//desktop//pythonprojects//ebay//csv_to_xlsx//' + file)
+	os.remove('c://users//matt//documents//pythonprojects//ebay//csv_to_xlsx//' + file)
